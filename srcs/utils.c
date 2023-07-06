@@ -6,11 +6,11 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:24:43 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/05 15:56:21 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/06 20:37:59 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../inc/philo.h"
 
 static int	ft_isspace(char c)
 {

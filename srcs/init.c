@@ -6,11 +6,11 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:26:20 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/05 15:55:22 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/06 20:39:55 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../inc/philo.h"
 
 static int	check_val(char *str)
 {
@@ -31,7 +31,7 @@ static int	check_val(char *str)
 int	init_val(int ac, char **av, t_info *info)
 {
 	if (!check_val(av[1]) || !check_val(av[2]) || !check_val(av[3])
-		|| !check_val(av[4] || (ac == 6 && !check_val(av[5]))))
+		|| !check_val(av[4]) || (ac == 6 && !check_val(av[5])))
 		return (0);
 	info->philos = ft_atoi(av[1]);
 	info->die_time = ft_atoi(av[2]);
