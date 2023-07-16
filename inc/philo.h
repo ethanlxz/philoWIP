@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:14:25 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/05 15:56:55 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/16 22:23:31 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,25 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <pthread.h>
+# include <sys/time.h>
 
+/*
+2 types of state in this program
+
+thinking = program is currently running
+end = one of the philos is dead or all the philos has met the min_eat quota;
+*/
+# define THINKING 1;
+# define END 2;
+
+// Strings for philo activity
+# define STR_FORK "has taken a fork"
+# define STR_EAT "is eating"
+# define STR_SLEEP "is sleeping"
+# define STR_THINK "is thinking"
+# define STR_DIED "died"
+
+// info for all the program parameters
 typedef struct s_info
 {
 	int	philos;
@@ -29,9 +47,38 @@ typedef struct s_info
 	int	state;
 }	t_info;
 
+// philo struct
+typedef struct s_philo
+{
+	int				id;
+	t_info			*info;
+	int				last_ate;
+	int				total_ate;
+	pthread_mutex_t	*m_print;
+	pthread_mutex_t	*m_fork;
+	pthread_mutex_t	*m_eat;
+	struct s_philo	*next;
+}	t_philo;
+
 // init.c
-int	init_val(int ac, char **av, t_info *info);
+int		init_val(int ac, char **av, t_info *info);
+int	init_mutex(t_philo *philo);
+
+// philo.c
+int		philo(t_info *info);
+
+// philo_actions.c
+void	grab_forks(t_philo *p);
+void	return_forks(t_philo *p);
+void	philo_eat(t_philo *p);
+void	philo_sleep(t_philo *p);
+void	philo_speak(t_philo *p, char *msg);
 
 // utils.c
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
+int		get_time(void);
+void	philo_speak(t_philo *p, char *msg);
+void	ft_usleep(int time);
+void	check_state(t_info *info);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:24:43 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/06 20:37:59 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/16 22:30:06 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,41 @@ int	ft_atoi(const char *str)
 		++index;
 	}
 	return (sign * number);
+}
+
+int	get_time(void)
+{
+	static struct timeval	init_time;
+	struct timeval			curr_time;
+	int						time;
+
+	if (init_time.tv_sec == 0)
+	{
+		gettimeofday(&init_time, NULL);
+	}
+	gettimeofday(&curr_time, NULL);
+	time = (curr_time.tv_sec * 1000) + (curr_time.tv_usec / 1000);
+	time -= (init_time.tv_sec * 1000) + (init_time.tv_usec / 1000);
+	return (time);
+}
+
+void	ft_usleep(int time)
+{
+	int	start_time;
+
+	start_time = get_time();
+	while (get_time() - start_time < time)
+		usleep(100);
+}
+
+void	check_state(t_info *info)
+{
+	while (info->state == 1)
+	{
+		if (info-> min_eat != 0 && info->met_quota >= info->philos)
+		{
+			info->state = END;
+			break ;
+		}
+	}
 }

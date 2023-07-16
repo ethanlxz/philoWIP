@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:26:20 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/06 20:39:55 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/16 22:23:40 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ int	init_val(int ac, char **av, t_info *info)
 	if (info->philos <= 0 || info->die_time <= 0
 		|| info->eat_time <= 0 || info->sleep_time <= 0
 		|| (ac == 6 && info->min_eat <= 0))
+		return (0);
+	return (1);
+}
+
+int	init_mutex(t_philo *philo)
+{
+	philo->m_eat = malloc(sizeof(pthread_mutex_t));
+	if (!philo->m_eat || pthread_mutex_init(philo->m_eat, NULL) != 0)
+		return (0);
+	philo->m_fork = malloc(sizeof(pthread_mutex_t));
+	if (!philo->m_fork || pthread_mutex_init(philo->m_fork, NULL) != 0)
 		return (0);
 	return (1);
 }

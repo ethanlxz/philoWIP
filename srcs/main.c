@@ -6,21 +6,25 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 22:52:39 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/06 20:46:45 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/14 17:31:40 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
 
-void	start(int ac, char **av, t_info *info)
+static void	start(int ac, char **av, t_info *info)
 {
 	if (!init_val(ac, av, info))
 	{
 		printf("Invalid parameters!\n");
+		return ;
 	}
-	else
-		printf("Correct!\n");
+	if (philo(info))
+	{
+		printf("Error! Program not created properly.\n");
+		return ;
+	}
 }
 
 int	main(int ac, char **av)
