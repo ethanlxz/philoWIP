@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:49:23 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/16 22:32:23 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/17 16:31:03 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ static void	*check_philo(void *ptr)
 		if (get_time() - p->last_ate >= p->info->die_time)
 			break ;
 		pthread_mutex_unlock(p->m_eat);
+		ft_usleep(1);
 	}
 	philo_speak(p, STR_DIED);
 	pthread_mutex_lock(p->m_print);
 	p->info->state = END;
-	pthread_exit(NULL);
+	return (NULL);
 }
 
 static	void	*philo_brain(void *ptr)
@@ -35,6 +36,8 @@ static	void	*philo_brain(void *ptr)
 	t_philo	*p;
 
 	p = (t_philo *)ptr;
+	if (p->id % 2 == 0)
+		ft_usleep(p->info->eat_time);
 	while (p->info->state == 1)
 	{
 		grab_forks(p);
@@ -43,7 +46,7 @@ static	void	*philo_brain(void *ptr)
 		philo_sleep(p);
 		philo_speak(p, STR_THINK);
 	}
-	pthread_exit(NULL);
+	return (NULL);
 }
 
 static int	create_mtx_th(pthread_t *th, t_philo *philo)
@@ -74,9 +77,8 @@ static int	create_philo(int id, t_info	*info, pthread_mutex_t	*m_print)
 	philo->id = id;
 	philo->info = info;
 	philo->m_print = m_print;
-	philo->m_fork = 0;
-	philo->m_eat = 0;
 	philo->last_ate = 0;
+	philo->total_ate = 0;
 	if (create_mtx_th(&th, philo))
 		return (1);
 	return (0);

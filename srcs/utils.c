@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:24:43 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/16 22:30:06 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/17 15:33:47 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ void	check_state(t_info *info)
 			info->state = END;
 			break ;
 		}
+		ft_usleep(500);
 	}
 }
