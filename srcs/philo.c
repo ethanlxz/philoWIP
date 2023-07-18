@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:49:23 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/17 16:31:03 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:26:11 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static int	create_philo(int id, t_info	*info, pthread_mutex_t	*m_print)
 	if (create_mtx_th(&th, philo))
 		return (1);
 	return (0);
-
 }
 
 int	philo(t_info *info)

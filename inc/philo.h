@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:14:25 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/18 18:25:27 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:26:01 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_philo
 
 // init.c
 int		init_val(int ac, char **av, t_info *info);
-int	init_mutex(t_philo *philo);
+int		init_mutex(t_philo *philo);
 
 // philo.c
 int		philo(t_info *info);
