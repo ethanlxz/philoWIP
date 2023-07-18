@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:21:22 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/17 15:28:44 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:49:23 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,3 @@ void	philo_speak(t_philo *p, char *msg)
 	printf("%04i %i %s\n", get_time(), p->id, msg);
 	pthread_mutex_unlock(p->m_print);
 }
-

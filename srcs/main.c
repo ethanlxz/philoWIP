@@ -6,12 +6,11 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 22:52:39 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/14 17:31:40 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:49:18 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
-
 
 static void	start(int ac, char **av, t_info *info)
 {

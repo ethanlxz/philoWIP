@@ -6,7 +6,7 @@
 #    By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/04 19:45:18 by lpang             #+#    #+#              #
-#    Updated: 2023/07/14 17:51:56 by etlaw            ###   ########.fr        #
+#    Updated: 2023/07/18 18:33:42 by etlaw            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME = philo
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I include/
-LDFLAGS = -fsanitize=address
+CFLAGS +=	-pthread
+CFLAGS +=	-fsanitize=thread
+# LDFLAGS = -fsanitize=address
 
 OBJS = obj/init.o \
 	   obj/main.o \
