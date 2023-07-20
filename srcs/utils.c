@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:24:43 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/20 01:14:06 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/21 00:14:33 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,18 @@ void	ft_usleep(int time)
 		usleep(100);
 }
 
+void	mutex_destroy(t_info *info, t_philo *philo)
+{
+	int i;
+
+	pthread_mutex_destroy(info->m_print);
+	pthread_mutex_destroy(info->m_end);
+	pthread_mutex_destroy(info->m_eat);
+	pthread_mutex_destroy(info->m_quota);
+	i = -1;
+	while (++i < info->philos)
+		pthread_mutex_destroy(philo[i].l_fork);
+}
 // void	check_state(t_info *info)
 // {
 // 	while (info->state == 1)

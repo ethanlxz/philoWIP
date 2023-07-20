@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:14:25 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/20 23:27:53 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/21 00:14:47 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ typedef struct s_philo
 // init.c
 int		init_val(int ac, char **av, t_info *info);
 int		init_mutex(t_philo *philo);
+bool	mutex_init(t_info *info);
 
 // philo.c
 int		philo(t_info *info);
 
 // philo_actions.c
-int	grab_forks(t_philo *p);
+int		grab_forks(t_philo *p);
 void	return_forks(t_philo *p);
 void	philo_eat(t_philo *p);
 void	philo_sleep(t_philo *p);
@@ -89,6 +90,7 @@ int		ft_atoi(const char *str);
 int		get_time(void);
 void	ft_usleep(int time);
 void	check_state(t_info *info);
+void	mutex_destroy(t_info *info, t_philo *philo);
 
 // check_philo
 int		philo_meal(t_philo *p);

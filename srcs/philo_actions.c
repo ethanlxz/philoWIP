@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:21:22 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:00:53 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/21 00:04:25 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	grab_forks(t_philo *p)
 {
 	pthread_mutex_lock(p->l_fork);
 	philo_speak(p, STR_FORK);
-	// printf("%d\n", p->info->philos);
 	if (p->info->philos == 1)
 	{
 		pthread_mutex_lock(p->m_end);
@@ -39,8 +38,6 @@ void	return_forks(t_philo *p)
 
 void	philo_eat(t_philo *p)
 {
-	// if (p->info-> min_eat != 0 && p->info->met_quota >= p->info->philos)
-	// 	return ;
 	++p->total_ate;
 	if (p->total_ate == p->info->min_eat)
 	{
@@ -56,21 +53,6 @@ void	philo_eat(t_philo *p)
 	ft_usleep(p->info->eat_time);
 }
 
-// ver 2 unstable !
-
-// void	philo_eat(t_philo *p)
-// {
-// 	pthread_mutex_lock(p->m_eat);
-// 	++p->total_ate;
-// 	// if (p->total_ate == p->info->min_eat)
-// 	// 	++p->info->met_quota;
-// 	// if (p->info->met_quota < p->info->philos)
-// 	philo_speak(p, STR_EAT);
-// 	p->last_ate = get_time();
-// 	ft_usleep(p->info->eat_time);
-// 	pthread_mutex_unlock(p->m_eat);
-// }
-
 void	philo_sleep(t_philo *p)
 {
 
@@ -83,28 +65,12 @@ void	philo_sleep(t_philo *p)
 void	philo_speak(t_philo *p, char *msg)
 {
 	int	tmp;
-	// if (p->info->state == 2)
-	// {
-	// 	pthread_mutex_lock(p->m_print);
-	// 	printf("%04i %i %s\n", get_time(), p->id, msg);
-	// 	return ;
-	// }
 	pthread_mutex_lock(p->m_end);
 	tmp = p->info->state;
 	pthread_mutex_unlock(p->m_end);
-	// usleep(10);
 	if (tmp == END)
-	{
-		// pthread_mutex_unlock(p->m_end);
-		// pthread_mutex_unlock(p->m_print);
 		return ;
-	}
-	// pthread_mutex_unlock(p->m_end);
 	pthread_mutex_lock(p->m_print);
 	printf("%04i %i %s\n", get_time(), p->id, msg);
-	// if (msg[0] == 'd')
-	// 	return ;
 	pthread_mutex_unlock(p->m_print);
-	// if (strcmp(msg, STR_DIED) != 0)
-	// 	pthread_mutex_unlock(p->m_print);
 }
