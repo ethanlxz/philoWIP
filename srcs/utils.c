@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:24:43 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/17 15:33:47 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/20 01:14:06 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,15 @@ void	ft_usleep(int time)
 		usleep(100);
 }
 
-void	check_state(t_info *info)
-{
-	while (info->state == 1)
-	{
-		if (info-> min_eat != 0 && info->met_quota >= info->philos)
-		{
-			info->state = END;
-			break ;
-		}
-		ft_usleep(500);
-	}
-}
+// void	check_state(t_info *info)
+// {
+// 	while (info->state == 1)
+// 	{
+// 		if (info-> min_eat != 0 && info->met_quota >= info->philos)
+// 		{
+// 			info->state = END;
+// 			break ;
+// 		}
+// 		ft_usleep(500);
+// 	}
+// }
