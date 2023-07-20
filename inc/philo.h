@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:14:25 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:14:47 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/21 00:34:47 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void	mutex_destroy(t_info *info, t_philo *philo);
 // check_philo
 int		philo_meal(t_philo *p);
 int		philo_dead(t_philo *p);
+void	*check_philo(void *ptr);
 
 #endif

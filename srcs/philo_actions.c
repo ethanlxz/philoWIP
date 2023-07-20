@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:21:22 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:04:25 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/21 00:40:14 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,14 @@ void	philo_eat(t_philo *p)
 
 void	philo_sleep(t_philo *p)
 {
-
 	philo_speak(p, STR_SLEEP);
 	ft_usleep(p->info->sleep_time);
 }
 
-#include <string.h>
-
 void	philo_speak(t_philo *p, char *msg)
 {
 	int	tmp;
+
 	pthread_mutex_lock(p->m_end);
 	tmp = p->info->state;
 	pthread_mutex_unlock(p->m_end);
