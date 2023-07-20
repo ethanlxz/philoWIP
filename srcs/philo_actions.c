@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:21:22 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/20 22:42:53 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/21 00:00:53 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ void	philo_eat(t_philo *p)
 {
 	// if (p->info-> min_eat != 0 && p->info->met_quota >= p->info->philos)
 	// 	return ;
-	pthread_mutex_lock(p->m_eat);
 	++p->total_ate;
-	pthread_mutex_lock(p->m_quota);
 	if (p->total_ate == p->info->min_eat)
 	{
+		pthread_mutex_lock(p->m_quota);
 		++p->info->met_quota;
+		pthread_mutex_unlock(p->m_quota);
 	}
 	if (p->info->met_quota <= p->info->philos)
 		philo_speak(p, STR_EAT);
-	pthread_mutex_unlock(p->m_quota);
+	pthread_mutex_lock(p->m_eat);
 	p->last_ate = get_time();
 	pthread_mutex_unlock(p->m_eat);
 	ft_usleep(p->info->eat_time);
@@ -82,6 +82,7 @@ void	philo_sleep(t_philo *p)
 
 void	philo_speak(t_philo *p, char *msg)
 {
+	int	tmp;
 	// if (p->info->state == 2)
 	// {
 	// 	pthread_mutex_lock(p->m_print);
@@ -89,12 +90,16 @@ void	philo_speak(t_philo *p, char *msg)
 	// 	return ;
 	// }
 	pthread_mutex_lock(p->m_end);
-	if (p->info->state == END)
+	tmp = p->info->state;
+	pthread_mutex_unlock(p->m_end);
+	// usleep(10);
+	if (tmp == END)
 	{
-		pthread_mutex_unlock(p->m_end);
+		// pthread_mutex_unlock(p->m_end);
+		// pthread_mutex_unlock(p->m_print);
 		return ;
 	}
-	pthread_mutex_unlock(p->m_end);
+	// pthread_mutex_unlock(p->m_end);
 	pthread_mutex_lock(p->m_print);
 	printf("%04i %i %s\n", get_time(), p->id, msg);
 	// if (msg[0] == 'd')

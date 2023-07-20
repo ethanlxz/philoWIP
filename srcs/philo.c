@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:49:23 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/20 22:37:36 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/20 23:55:09 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,15 @@ static int	create_th(t_info *info, t_philo *philo)
 	while (++i < info->philos)
 		pthread_join(th[i], NULL);
 	pthread_mutex_destroy(info->m_print);
+	pthread_mutex_destroy(info->m_end);
+	pthread_mutex_destroy(info->m_eat);
+	pthread_mutex_destroy(info->m_quota);
 	i = -1;
 	while (++i < info->philos)
 		pthread_mutex_destroy(philo[i].l_fork);
 	free (th);
-	return (0);
+	return (free(info->m_print), free(info->m_eat), free(info->m_fork),
+		free(info->m_end), free(info->philo_strc), free(info->m_quota), 0);
 }
 
 static t_philo	init_philo(int id, t_info	*info,
@@ -143,11 +147,13 @@ static t_philo	*create_philo(t_info *info)
 	info->m_quota = malloc(sizeof(pthread_mutex_t));
 	pthread_mutex_init(info->m_quota, NULL);
 	fork = malloc(sizeof(pthread_mutex_t) * info->philos);
+	info->m_fork = fork;
 	id = -1;
 	while (++id < info->philos)
 		pthread_mutex_init(&fork[id], NULL);
 	id = 0;
 	philo = malloc(sizeof(t_philo) * info->philos);
+	info->philo_strc = philo;
 	while (id < info->philos)
 	{
 		philo[id] = init_philo(id, info, fork);
@@ -160,12 +166,12 @@ static t_philo	*create_philo(t_info *info)
 
 int	philo(t_info *info)
 {
-	pthread_mutex_t	*m_print;
+	// pthread_mutex_t	*m_print;
 	t_philo			*philo;
 
-	m_print = malloc(sizeof(pthread_mutex_t));
-	if (!m_print || pthread_mutex_init(m_print, NULL) != 0)
-		return (1);
+	// m_print = malloc(sizeof(pthread_mutex_t));
+	// if (!m_print || pthread_mutex_init(m_print, NULL) != 0)
+		// return (1);
 	info->state = THINKING;
 	philo = create_philo(info);
 	if (!philo)

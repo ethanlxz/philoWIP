@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 22:52:39 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/18 18:49:18 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/21 00:02:03 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int	main(int ac, char **av)
 	}
 	else
 		printf("Too much or too less arguments! Try again.\n");
+	// system("leaks -q philo");
 	return (0);
 }
