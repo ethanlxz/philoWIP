@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:49:23 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:21:39 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/21 00:48:56 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static	void	*philo_brain(void *ptr)
 
 	p = (t_philo *)ptr;
 	if (p->id % 2 == 0)
-		ft_usleep(p->info->eat_time / 2);
+		ft_usleep(p->info->eat_time / 2, p->info->philos);
 	while (true)
 	{
 		pthread_mutex_lock(p->m_end);

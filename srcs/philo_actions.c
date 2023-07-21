@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:21:22 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:40:14 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/21 00:48:38 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ void	philo_eat(t_philo *p)
 	pthread_mutex_lock(p->m_eat);
 	p->last_ate = get_time();
 	pthread_mutex_unlock(p->m_eat);
-	ft_usleep(p->info->eat_time);
+	ft_usleep(p->info->eat_time, p->info->philos);
 }
 
 void	philo_sleep(t_philo *p)
 {
 	philo_speak(p, STR_SLEEP);
-	ft_usleep(p->info->sleep_time);
+	ft_usleep(p->info->sleep_time, p->info->philos);
 }
 
 void	philo_speak(t_philo *p, char *msg)

@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:14:25 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:34:47 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/21 00:49:30 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	philo_speak(t_philo *p, char *msg);
 // utils.c
 int		ft_atoi(const char *str);
 int		get_time(void);
-void	ft_usleep(int time);
+void	ft_usleep(int time, int num);
 void	check_state(t_info *info);
 void	mutex_destroy(t_info *info, t_philo *philo);
 

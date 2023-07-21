@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:24:43 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:46:05 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/21 00:55:29 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,15 @@ int	get_time(void)
 	return (time);
 }
 
-void	ft_usleep(int time)
+void	ft_usleep(int time, int num)
 {
 	int	start_time;
 
 	start_time = get_time();
 	while (get_time() - start_time < time)
-		usleep(250);
+		// usleep(250);
+		usleep(1 * num);
+	// (void)num;
 }
 
 void	mutex_destroy(t_info *info, t_philo *philo)
