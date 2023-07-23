@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:24:43 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:55:29 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/23 18:45:13 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,7 @@ void	ft_usleep(int time, int num)
 
 	start_time = get_time();
 	while (get_time() - start_time < time)
-		// usleep(250);
 		usleep(1 * num);
-	// (void)num;
 }
 
 void	mutex_destroy(t_info *info, t_philo *philo)
@@ -87,15 +85,3 @@ void	mutex_destroy(t_info *info, t_philo *philo)
 	while (++i < info->philos)
 		pthread_mutex_destroy(philo[i].l_fork);
 }
-// void	check_state(t_info *info)
-// {
-// 	while (info->state == 1)
-// 	{
-// 		if (info-> min_eat != 0 && info->met_quota >= info->philos)
-// 		{
-// 			info->state = END;
-// 			break ;
-// 		}
-// 		ft_usleep(500);
-// 	}
-// }

@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:21:22 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:48:38 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/23 18:45:44 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	return_forks(t_philo *p)
 	pthread_mutex_unlock(p->l_fork);
 	pthread_mutex_unlock(p->r_fork);
 }
-
-// ver 1 (safe but can't think or sleep)
 
 void	philo_eat(t_philo *p)
 {

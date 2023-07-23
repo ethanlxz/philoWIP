@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:14:25 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:49:30 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/23 18:46:21 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_info
 	int				min_eat;
 	int				met_quota;
 	int				state;
-	struct s_philo	*philo_strc;
+	struct s_philo	*philo_struct;
 	pthread_t		*th;
 	pthread_mutex_t	*m_print;
 	pthread_mutex_t	*m_eat;
@@ -73,7 +73,7 @@ typedef struct s_philo
 // init.c
 int		init_val(int ac, char **av, t_info *info);
 int		init_mutex(t_philo *philo);
-bool	mutex_init(t_info *info);
+int		mutex_init(t_info *info);
 
 // philo.c
 int		philo(t_info *info);

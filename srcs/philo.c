@@ -6,35 +6,11 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:49:23 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:48:56 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/23 18:45:26 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
-
-// static void	*check_philo(void *ptr)
-// {
-// 	int		i;
-// 	t_philo	*p;
-
-// 	i = 0;
-// 	p = (t_philo *)ptr;
-// 	while (1)
-// 	{
-// 		if (philo_meal(&p[i % p->info->philos]))
-// 		{
-// 			break ;
-// 		}
-// 		if (philo_dead(&p[i % p->info->philos]))
-// 		{
-// 			pthread_mutex_lock(p->m_print);
-// 			printf("%04i %i %s\n", get_time(), p->id, STR_DIED);
-// 			break ;
-// 		}
-// 		usleep(50);
-// 	}
-// 	return (NULL);
-// }
 
 static	void	*philo_brain(void *ptr)
 {
@@ -53,7 +29,8 @@ static	void	*philo_brain(void *ptr)
 			break ;
 		}
 		pthread_mutex_unlock(p->m_end);
-		grab_forks(p);
+		if (grab_forks(p) == 1)
+			continue ;
 		philo_eat(p);
 		return_forks(p);
 		philo_sleep(p);
@@ -85,7 +62,7 @@ static int	create_th(t_info *info, t_philo *philo)
 	mutex_destroy(info, philo);
 	free (th);
 	return (free(info->m_print), free(info->m_eat), free(info->m_fork),
-		free(info->m_end), free(info->philo_strc), free(info->m_quota), 0);
+		free(info->m_end), free(info->philo_struct), free(info->m_quota), 0);
 }
 
 static t_philo	init_philo(int id, t_info	*info,
@@ -106,15 +83,6 @@ static t_philo	init_philo(int id, t_info	*info,
 	return (philo);
 }
 
-	// info->m_print = malloc(sizeof(pthread_mutex_t));
-	// if (!info->m_print || pthread_mutex_init(info->m_print, NULL) != 0)
-	// 	return (NULL);
-	// info->m_eat = malloc(sizeof(pthread_mutex_t));
-	// pthread_mutex_init(info->m_eat, NULL);
-	// info->m_end = malloc(sizeof(pthread_mutex_t));
-	// pthread_mutex_init(info->m_end, NULL);
-	// info->m_quota = malloc(sizeof(pthread_mutex_t));
-	// pthread_mutex_init(info->m_quota, NULL);
 static t_philo	*create_philo(t_info *info)
 {
 	int				id;
@@ -130,7 +98,7 @@ static t_philo	*create_philo(t_info *info)
 		pthread_mutex_init(&fork[id], NULL);
 	id = -1;
 	philo = malloc(sizeof(t_philo) * info->philos);
-	info->philo_strc = philo;
+	info->philo_struct = philo;
 	while (++id < info->philos)
 	{
 		philo[id] = init_philo(id, info, fork);

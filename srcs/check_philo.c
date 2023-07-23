@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 22:57:20 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:36:47 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/23 18:46:01 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,32 +41,6 @@ int	philo_dead(t_philo *p)
 	pthread_mutex_unlock(p->m_eat);
 	return (0);
 }
-
-// int	create_th(t_info *info, t_philo *philo)
-// {
-// 	int			i;
-// 	pthread_t	*th;
-// 	pthread_t	check;
-
-// 	th = malloc(sizeof(pthread_t) * info->philos);
-// 	if (th == NULL)
-// 		return (1);
-// 	i = -1;
-// 	while (++i < info->philos)
-// 	{
-// 		if (pthread_create(&th[i], NULL, &philo_brain, (void *)&philo[i]) != 0)
-// 			return (1);
-// 	}
-// 	i = -1;
-// 	pthread_create(&check, NULL, &check_philo, (void *)philo);
-// 	pthread_join(check, NULL);
-// 	while (++i < info->philos)
-// 		pthread_join(th[i], NULL);
-// 	mutex_destroy(info, philo);
-// 	free (th);
-// 	return (free(info->m_print), free(info->m_eat), free(info->m_fork),
-// 		free(info->m_end), free(info->philo_strc), free(info->m_quota), 0);
-// }
 
 void	*check_philo(void *ptr)
 {

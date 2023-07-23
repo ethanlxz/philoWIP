@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:26:20 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/21 00:11:35 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/23 18:46:09 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	init_val(int ac, char **av, t_info *info)
 	return (1);
 }
 
-bool	mutex_init(t_info *info)
+int	mutex_init(t_info *info)
 {
 	info->m_print = malloc(sizeof(pthread_mutex_t));
 	if (!info->m_print || pthread_mutex_init(info->m_print, NULL) != 0)
